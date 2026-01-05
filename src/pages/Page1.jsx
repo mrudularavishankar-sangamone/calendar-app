@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import '../App.css';
+
 export default function Page1(){
 
   const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -5,8 +8,8 @@ export default function Page1(){
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   const currentDate = new Date();
-  const currentMonth = currentDate.getMonth();
-  const currentYear = currentDate.getFullYear();
+  const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth());
+  const [currentYear, setCurrentYear] = useState(currentDate.getFullYear());
   const daysInMonth = new Date(currentYear, currentMonth, 0).getDate();
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
 
@@ -34,11 +37,34 @@ export default function Page1(){
     return dates;
   }
 
+  function previous (){
+    if(currentMonth === 0){
+      setCurrentMonth(11);
+      setCurrentYear(currentYear - 1);
+    }else{
+      setCurrentMonth(currentMonth - 1);
+    }
+  }
+  
+    function next (){
+    if(currentMonth === 11){
+      setCurrentMonth(0);
+      setCurrentYear(currentYear + 1);
+    }else{
+      setCurrentMonth(currentMonth + 1);
+    }
+  }
+
   return(
     <div>
       <h2> Calendar {currentYear} </h2>
 
       <h3> {months[currentMonth]}, {currentYear} </h3>
+      
+      <div>
+        <i onClick={previous}> &lt; </i>
+        <i onClick={next}> &gt; </i>
+      </div>
 
       <table>
         <tr>
