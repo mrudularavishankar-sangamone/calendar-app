@@ -10,8 +10,12 @@ export default function Page1(){
   const currentDate = new Date();
   const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth());
   const [currentYear, setCurrentYear] = useState(currentDate.getFullYear());
-  const daysInMonth = new Date(currentYear, currentMonth, 0).getDate();
+  console.log(`CurrentMonth: ${currentMonth} ${months[currentMonth]}`);
+  console.log(`CurrentYear: ${currentYear}`);
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  console.log(daysInMonth);
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+  console.log(firstDayOfMonth);
 
   function displayDaysOfWeek() {
     let weekdays = [];
