@@ -1,70 +1,339 @@
-# Getting Started with Create React App
+# Calendar Display
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple React application that displays a calendar with the ability to navigate between previous and next months.
 
-## Available Scripts
+## Technologies Used:
+- ReactJS - UI framework and interactivity
+- HTML - Markup structure
+- CSS - Styling
 
-In the project directory, you can run:
+## Setup/Installation
 
-### `npm start`
+### Prerequisites:
+- Node.js (v14 or higher) and npm installed on your machine
+- Git (to clone the repository)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Steps:
+1. Verify if npm is installed in your device/workspace(for Windows)
+    - Before running the project, ensure that npm is installed on your system.
+    - Open the Terminal in VSCode.
+    - Run the following command:
+      ```
+      npm -v
+      ```
+    - If a version number is displayed (for example, 10.4.1), npm is already installed. You can skip Step 2.
+    - If you see an error such as: ```'npm' is not recognized as an internal or external command```, then npm is not installed. Proceed to Step 2
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. Installing npm:
+    - Download Node.js from 'https://nodejs.org/'.
+    - Install Node.js by running the installer and follow the prompts.
+    - Verify the installation by running the npm -v command in terminal.
 
-### `npm test`
+3. Install the React package and its dependencies:
+    ```
+    npx create-react-app <app-name>
+    ```
+    P.S: The AppName should only contain lowercase alphabets
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. Changing the directory to the
+    ```
+    cd <app-name>
+    ```
 
-### `npm run build`
+5. Start the development server:
+    ```
+    npm start
+    ```
+    The app will open in your browser at http://localhost:3000
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+6. Modify App.js file:
+    - Delete the logo.svg import statement
+    - Delete all the lines of code between the return() in App function
+    - Add the following statements in the return()
+      ```
+      return(
+        <div>
+          <h1> Calendar </h1>
+        </div>
+      );
+      ```
+    - Verify the output at http://localhost:3000. Now, the React Application is ready.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+7. Grouping the jsx file:
+    - Create a folder called pages under src.
+    - Create a file called pages/Page1.jsx.
+    - Add the ```export default function Page1(){ }``` statement.
+    - Add an empty return statement within Page1() function.
+      ```
+      return(
+        <div>
+        </div>
+      );
+      ```
+    - Create a table with weekdays as the column headers within div-tag inside return():
+      ```
+      <table>
+        <tr>
+          <th>Sun</th>
+          <th>Mon</th>
+          <th>Tue</th>
+          <th>Wed</th>
+          <th>Thu</th>
+          <th>Fri</th>
+          <th>Sat</th>
+        </tr>
+      </table>
+      ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+8. Including Page1.jsx reference in App.js:
+    - Add ```import Page1 from './pages/Page1.jsx'``` statement
+    - Add React tag within the return() so that the contents of Page1.jsx shows up on the screen.
+      ```
+      return(
+        <div className = "App">
+          <h1> Calendar </h1>
+          <Page1 />
+        </div>
+      );
+      ```
+    - Verify the output at http://localhost:3000.
 
-### `npm run eject`
+9. Adding Dates to the table:
+    - Hard code the dates into the table using td-tag:
+      ```
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td>12</td>
+        <td>13</td>
+        <td>14</td>
+        <td>15</td>
+        <td>16</td>
+        <td>17</td>
+      </tr>
+      <tr>
+        <td>18</td>
+        <td>19</td>
+        <td>20</td>
+        <td>21</td>
+        <td>22</td>
+        <td>23</td>
+        <td>24</td>
+      </tr>
+      <tr>
+        <td>25</td>
+        <td>26</td>
+        <td>27</td>
+        <td>28</td>
+        <td>29</td>
+        <td>30</td>
+        <td>31</td>
+      </tr>
+      ```
+    - Verify the output at http://localhost:3000.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+10. Adding the logic to dynamically display Weekdays:
+    - Create an array whose values are days of the week:
+      ```
+      const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      ```
+    - Create a function to dynamically render the values of daysOfWeek array:
+      ```
+      function displayDaysOfWeek() {
+        let weekdays = [];
+        for(let i = 0; i < daysOfWeek.length; i++) {
+          weekdays.push(<span key = {"Days" + i}> {daysOfWeek[i]} </span>);
+        }
+        return weekdays;
+      }
+      ```
+      PS: The above lines of code are to be placed within Page1() before the return().
+    - Add the following lines of code inside the return():
+      ```
+      <div className = 'days-container'>
+        {displayDaysOfWeek()}
+      </div>
+      ```
+    - Verify the output at http://localhost:3000.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+11. Adding the logic to dynamically display the dates:
+    - Create an array whose values are months in a year:
+      ```
+      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      ```
+    - Add the following lines of code to extract the current date, current month, current year, days in a month:
+      ```
+      const currentDate = new Date();
+      const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth());
+      const [currentYear, setCurrentYear] = useState(currentDate.getFullYear());
+      const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+      ```
+    - Add ```import { useState } from 'react';``` in order to use the useState function.
+    - Create a function to dynamically render the values of daysOfWeek array:
+      ```
+      function displayDatesInMonth (){
+        let dates = [];
+        for(let i = 1; i <= daysInMonth; i++){
+          dates.push(<span key = {"Date" + i}> {i} </span>);
+        }
+        return dates;
+      }
+      ```
+      PS: The above lines of code are to be placed within Page1() before the return().
+    - Add the following lines of code inside the return():
+      ```
+      <div className = 'dates-container'>
+        {displayDatesInMonth()}
+      </div>
+      ```
+    - Verify the output at http://localhost:3000.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+12. Displaying the month and year dynamically as headings:
+    - Add the following lines of code to display the month and year as heading:
+      ```
+      <h2> Calendar {currentYear} </h2>
+      <h3> {months[currentMonth]}, {currentYear} </h3>
+      ```
+    - Verify the output at http://localhost:3000.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+13. Adding CSS to the page in order to display the calendar properly:
+    - Open the App.css file and the following:
+      ```
+      .App {
+        text-align: center;
+      }
 
-## Learn More
+    .App-header {
+      background-color: #282c34;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(10px + 2vmin);
+      color: white;
+    }
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    .days-container {
+      width: 100%; 
+      display: flex;
+    }
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    .days-container span {
+      width: calc(100% / 7);
+      font-weight: bold;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px 0px 10px 0px;
+    }
 
-### Code Splitting
+    .dates-container {
+      width: 100%; 
+      display: flex;
+      flex-wrap: wrap;
+    }
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    .dates-container span {
+      width: calc(100% / 7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px 0px 10px 0px;
+    }
 
-### Analyzing the Bundle Size
+    div i {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      gap: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+14. Adding empty spaces to align the first day of the month
+    -  Create a function to dynamically render the empty spaces until start of the the first day:
+      ```
+      const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
 
-### Making a Progressive Web App
+      function emptySpace(){
+        let emptySpaces = [];
+        for(let i = 0; i < firstDayOfMonth; i++){
+          emptySpaces.push(<span key = {"empty" + i}> </span>);
+        }
+        return emptySpaces;
+      }
+      ```
+      PS: The above lines of code are to be placed within Page1() before the return().
+    - Add the following line of code within dates-container div tag inside the return():
+      ```
+      <div className = 'dates-container'>
+        {emptySpace()}
+        {displayDatesInMonth()}
+      </div>
+      ```
+    - Verify the output at http://localhost:3000.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+15. Adding next and previous buttons to Page1.jsx file
+    - Add the following piece of code within return() statement:
+      ```
+      <div>
+        <button> &lt; </button>
+        <button> &gt; </button>
+      </div>
+      ```
 
-### Advanced Configuration
+16. Adding a previous function to navigate to previous month
+    - Add the following lines of code to handle backward month navigation:
+      ```
+      function previous () {
+        if (currentMonth === 0) {
+          setCurrentMonth(11);
+          setCurrentYear(currentYear - 1);
+        } else {
+          setCurrentMonth(currentMonth - 1);
+        }
+      }
+      ```
+      This function updates the month and year correctly when moving from January to December of the previous year.
+    - Adding onclick attribute to previous button:
+      ```
+      <button onClick={previous}> &lt; </button>
+      ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+17. Adding a next function to navigate to next month
+    - Add the following lines of code to handle forward month navigation:
+      ```
+      function next (){
+        if(currentMonth === 11){
+          setCurrentMonth(0);
+          setCurrentYear(currentYear + 1);
+        }else{
+          setCurrentMonth(currentMonth + 1);
+        }
+      }
+      ```
+      This function updates the month and year correctly when moving from December to January of the next year.
+    - Adding onclick attribute to next button:
+      ```
+      <button onClick={next}> &gt; </button>
+      ```
