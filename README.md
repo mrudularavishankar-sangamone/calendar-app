@@ -214,7 +214,7 @@ A simple React application that displays a calendar with the ability to navigate
     - Verify the output at http://localhost:3000.
 
 13. Adding CSS to the page in order to display the calendar properly:
-    - Open the App.css file and the following:
+    - Open the App.css file and add the following:
       ```
       .App {
         text-align: center;
