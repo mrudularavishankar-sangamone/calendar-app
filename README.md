@@ -14,7 +14,7 @@ A simple React application that displays a calendar with the ability to navigate
 - Git (to clone the repository)
 
 ### Steps:
-1. Verify if npm is installed in your device/workspace(for Windows)
+1. Verify if npm is installed in your device/workspace(for Windows):
     - Before running the project, ensure that npm is installed on your system.
     - Open the Terminal in VSCode.
     - Run the following command:
@@ -35,7 +35,7 @@ A simple React application that displays a calendar with the ability to navigate
     ```
     P.S: The AppName should only contain lowercase alphabets
 
-4. Changing the directory to the
+4. Changing the directory to the AppName:
     ```
     cd <app-name>
     ```
@@ -220,55 +220,55 @@ A simple React application that displays a calendar with the ability to navigate
         text-align: center;
       }
 
-    .App-header {
-      background-color: #282c34;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-size: calc(10px + 2vmin);
-      color: white;
-    }
+      .App-header {
+        background-color: #282c34;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: calc(10px + 2vmin);
+        color: white;
+      }
 
-    .days-container {
-      width: 100%; 
-      display: flex;
-    }
+      .days-container {
+        width: 100%; 
+        display: flex;
+      }
 
-    .days-container span {
-      width: calc(100% / 7);
-      font-weight: bold;
-      text-transform: uppercase;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 10px 0px 10px 0px;
-    }
+      .days-container span {
+        width: calc(100% / 7);
+        font-weight: bold;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px 0px 10px 0px;
+      }
 
-    .dates-container {
-      width: 100%; 
-      display: flex;
-      flex-wrap: wrap;
-    }
+      .dates-container {
+        width: 100%; 
+        display: flex;
+        flex-wrap: wrap;
+      }
 
-    .dates-container span {
-      width: calc(100% / 7);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 10px 0px 10px 0px;
-    }
+      .dates-container span {
+        width: calc(100% / 7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px 0px 10px 0px;
+      }
 
-    div i {
-      margin: 10px;
-      padding: 10px 20px;
-      font-size: 16px;
-      gap: 10px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    ```
+      div i {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        gap: 10px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      ```
 
 14. Adding empty spaces to align the first day of the month
     -  Create a function to dynamically render the empty spaces until start of the the first day:
